@@ -1,9 +1,11 @@
 #include "../include/Square.hpp"
 
+#include <cmath>
+
 Square::Square() : Figure() {}
 
 Square::Square(Point v1, Point v2, Point v3, Point v4) : Figure()  {
-    this->_points.resize(this->GetPointCount());
+    this->_points.Resize(this->GetPointCount());
     
     this->_points[0] = v1;
     this->_points[1] = v2;
@@ -16,3 +18,7 @@ double Square::Area() const {
 }
 
 size_t Square::GetPointCount() const { return 4; }
+
+std::string Square::GetTypeName() const {
+    return "Square";
+}

@@ -1,8 +1,6 @@
 #pragma once
 
 #include <initializer_list>
-#include <stdexcept>
-#include <string>
 
 template<typename T>
 class Array {
@@ -11,15 +9,15 @@ private:
     T* data_ptr = nullptr;
 
     // Размер массива
-    size_t size = 0;
-    size_t capacity = 0;
+    std::size_t size = 0;
+    std::size_t capacity = 0;
 public:
     // Конструктор по умолчанию
     Array();
     // Конструктор с размером
-    Array(size_t);
+    Array(std::size_t);
     // Конструктор с размером и значением по умолчанию
-    Array(size_t, T);
+    Array(std::size_t, T);
     // Конструктор из параметров инициализации
     Array(std::initializer_list<T>);
 
@@ -37,11 +35,16 @@ public:
     Array& operator=(Array&&) noexcept;
 
     // Операторы индексирования
-    T& operator[](size_t idx);
-    T operator[](size_t idz) const;
+    T& operator[](std::size_t);
+    T operator[](std::size_t) const;
+
+    // Метод резервирования памяти
+    void Reserve(std::size_t);
+    // Метод изменения размера
+    void Resize(std::size_t);
 
     // Метод получения размера
-    size_t GetSize() const;
+    std::size_t GetSize() const;
 
     // Методы добавления
     void PushBack(T);
@@ -49,10 +52,12 @@ public:
     T PopBack();
 
     // Метод вставки по индексу
-    void Insert(size_t pos, T val);
+    void Insert(std::size_t, T);
     // Метод удаления по индексу
-    void Remove(size_t pos);
+    void Remove(std::size_t);
 
-    // Метод очистки
+    // Метод очистки массива
     void Clear();
 };
+
+#include "./Array.tpp"

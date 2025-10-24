@@ -30,44 +30,49 @@ int main() {
 
     // Сравниваем объекты между собой и вычисляем у каждой фигуры площадь и координаты геометрического центра
     for (size_t i = 0; i < figures.GetSize(); ++i) {
-        std::cout << "Сравниваем объекты типов " << typeid(*figures[i]).name() 
-                  << " и " << typeid(*figures[(i + 1) % figures.GetSize()]).name() << ": ";
+        std::cout << "Сравниваем объекты типов " << figures[i]->GetTypeName()
+                  << " и " << figures[(i + 1) % figures.GetSize()]->GetTypeName() << ": они ";
         std::cout << ((*figures[i] == *figures[(i + 1) % figures.GetSize()]) ? "Равны" : "НЕ равны") << "\n";
 
         Point p = figures[i]->GeometricCenter();
-        std::cout << "Площадь фигуры " << typeid(*figures[i]).name() << " равна " 
+        std::cout << "Площадь фигуры " << figures[i]->GetTypeName() << " равна " 
                   << figures[i]->Area() << ", координаты её геометрического центра - X: " << p.x << " Y: " << p.y << "\n\n";
 
         total_area += figures[i]->Area();
     }
 
     // Выводим общую площадь всех трёх фигур.
-    std::cout << "\nОбщая площадь фигур в массиве: " << total_area << '\n';
+    std::cout << "Общая площадь фигур в массиве: " << total_area << "\n";
 
+    std::cout << "\n-------------------------------------------------------------------\n";
     // Проверим функции удаления и добавления в массив по индексу.
 
-    std::cout << "Сейчас набор фигур в массиве такой:\n";
+    std::cout << "\nСейчас набор фигур в массиве такой:\n";
     for (size_t i = 0; i < figures.GetSize(); ++i) {
-        std::cout << i + 1 << ") " << typeid(*figures[i]).name() << ", ";
+        std::cout << i + 1 << ") " << figures[i]->GetTypeName() << " ";
     }
+    
 
     // Удаляем вторую фигуру
+    std::cout << "\n\nУдаляем фигуру номер 2 (индекс 1)\n";
     Figure* tmp = figures[1];
     figures.Remove(1);
 
-    std::cout << "Сейчас набор фигур в массиве такой:\n";
+    std::cout << "\nТеперь набор фигур в массиве выглядит так:\n";
     for (size_t i = 0; i < figures.GetSize(); ++i) {
-        std::cout << i + 1 << ") " << typeid(*figures[i]).name() << ", ";
+        std::cout << i + 1 << ") " << figures[i]->GetTypeName()  << " ";
     }
 
     // Добавляем удаленную фигуру в начало массива
-
+    std::cout << "\n\nДобавляем удаленную фигуру в самое начало массива (индекс 0)\n";
     figures.Insert(0, tmp);
 
-    std::cout << "Сейчас набор фигур в массиве такой:\n";
+    std::cout << "Теперь набор фигур в массиве такой:\n";
     for (size_t i = 0; i < figures.GetSize(); ++i) {
-        std::cout << i + 1 << ") " << typeid(*figures[i]).name() << ", ";
+        std::cout << i + 1 << ") " << figures[i]->GetTypeName() << " ";
     }
+
+    std::cout << "\n\n";
 
     return 0;
 }

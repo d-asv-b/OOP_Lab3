@@ -1,9 +1,7 @@
 #pragma once
 
-#include <cstddef>
-#include <vector>
+#include "./Array.hpp"
 #include <istream>
-#include <cmath>
 
 struct Point {
     double x, y;
@@ -12,7 +10,7 @@ struct Point {
 class Figure {
 protected:
     // Список координат фигуры
-    std::vector<Point> _points;
+    Array<Point> _points;
 
 public:
     // Конструктор по умолчанию
@@ -44,5 +42,7 @@ public:
     // Метод вычисление геометрического центра фигуры
     Point GeometricCenter() const;
     // Метод для получения количества вершин фигуры
-    virtual size_t GetPointCount() const;
+    virtual std::size_t GetPointCount() const;
+
+    virtual std::string GetTypeName() const = 0;
 };

@@ -13,4 +13,5 @@ public:
 
     double Area() const override final;
     size_t GetPointCount() const override final;
+    std::string GetTypeName() const override final;
 };

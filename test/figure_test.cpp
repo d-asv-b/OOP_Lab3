@@ -1,11 +1,13 @@
 #include <gtest/gtest.h>
+#include <cmath>
+
 #include "../include/Triangle.hpp"
 #include "../include/Square.hpp"
 #include "../include/Octagon.hpp"
 
 // Triangle tests
 TEST(TriangleTest, AreaCalculation) {
-    Triangle t(Point{0,0}, Point{1,0}, Point{0.5, sqrt(3)/2});
+    Triangle t(Point{0,0}, Point{1,0}, Point{0.5, std::sqrt(3)/2});
     ASSERT_NEAR(t.Area(), 0.433, 0.001);
 }
 
@@ -17,9 +19,9 @@ TEST(TriangleTest, GeometricCenter) {
 }
 
 TEST(TriangleTest, EqualityOperator) {
-    Triangle t1(Point{0,0}, Point{1,0}, Point{0.5, sqrt(3)/2});
-    Triangle t2(Point{0,0}, Point{1,0}, Point{0.5, sqrt(3)/2});
-    Triangle t3(Point{0,0}, Point{2,0}, Point{1, sqrt(3)});
+    Triangle t1(Point{0,0}, Point{1,0}, Point{0.5, std::sqrt(3)/2});
+    Triangle t2(Point{0,0}, Point{1,0}, Point{0.5, std::sqrt(3)/2});
+    Triangle t3(Point{0,0}, Point{2,0}, Point{1, std::sqrt(3)});
     ASSERT_TRUE(t1 == t2);
     ASSERT_FALSE(t1 == t3);
 }
