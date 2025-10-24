@@ -7,6 +7,7 @@ add_library(${PROJECT_NAME}_lib
   src/Octagon.cpp
   src/Square.cpp
   src/Triangle.cpp
+  src/Array.cpp
 )
 
 add_executable(${PROJECT_NAME}_exe main.cpp)
